@@ -8,6 +8,7 @@ stylus      = require('gulp-stylus')
 uglify      = require('gulp-uglify')
 minifyCss   = require('gulp-minify-css')
 wiredep     = require('wiredep').stream
+ghPages     = require('gulp-gh-pages')
 
 paths =
   jade: 'app/**/*.jade'
@@ -65,6 +66,10 @@ gulp.task 'watch', ->
   gulp.watch(paths.stylus, ['stylus'])
   gulp.watch(paths.images, ['images'])
 
+
+gulp.task 'deploy', ->
+  gulp.src('dist/**/*')
+      .pipe(ghPages())
 
 gulp.task 'build', ->
   runSequence 'clean', 'bower', ['jade', 'stylus', 'images'], 'usemin'
