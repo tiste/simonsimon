@@ -11,9 +11,15 @@ html
     // endbuild
 
   body
+    .container.pos-absolute-center
+      - n = 1
+      each tile in ['green', 'blue', 'purple', 'yellow', 'orange', 'red', 'pink', 'dark', 'silver']
+        .tile(class=tile, data-tile=n)= n++
+
     // build:jsVendor(.) scripts/vendor.js
     // bower:js
     script(src='bower_components/jquery/dist/jquery.js')
+    script(src='bower_components/lodash/lodash.js')
     // endbower
     // endbuild
 
