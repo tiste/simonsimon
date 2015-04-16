@@ -1,9 +1,0 @@
-{
-  "name": "simonsimon",
-  "version": "0.0.1",
-  "dependencies": {
-    "jquery": "2.1.1",
-    "lodash": "3.7.0",
-    "normalize.styl": "3.0.0"
-  }
-}
