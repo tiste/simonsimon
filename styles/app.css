@@ -571,6 +571,8 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
 *,
 *:before,
@@ -597,6 +599,9 @@ body {
 .clearfix:after,
 .container:after {
   clear: both;
+}
+a {
+  color: #95a5a6;
 }
 .container {
   margin: 0 auto;
@@ -628,7 +633,17 @@ body {
   z-index: 10;
 }
 .new-game {
+  display: inline-block;
   cursor: pointer;
+  color: #d2527f;
+  border: 3px solid #d2527f;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px 30px;
+}
+.new-game:hover {
+  background-color: #d2527f;
+  color: #fefefe;
 }
 @media (max-width: 768px) {
   .container {
@@ -638,5 +653,38 @@ body {
     width: 33.333333333333336%;
     height: auto;
     font-size: 5em;
+  }
+}
+body.daftpunk {
+  color: #fefefe;
+  background-color: #101012;
+}
+body.daftpunk .tile {
+  background-color: transparent;
+  color: #15d880;
+  border: 3px solid #15d880;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 80px -10px #15d880;
+  box-shadow: 0 0 80px -10px #15d880;
+  width: 190px;
+  margin: 5px;
+}
+body.daftpunk .tile.pressed {
+  background-color: #15d880;
+  color: rgba(0,0,0,0.8);
+}
+body.daftpunk .new-game {
+  color: #15d880;
+  border-color: #15d880;
+}
+body.daftpunk .new-game:hover {
+  background-color: #15d880;
+  color: #fefefe;
+}
+@media (max-width: 768px) {
+  body.daftpunk .tile {
+    width: 31.666666666666668%;
+    margin: 0.666666666666667%;
   }
 }
