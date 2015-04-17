@@ -14,6 +14,7 @@ paths =
   jade: 'app/**/*.jade'
   stylus: 'app/styles/**/*.styl'
   images: 'app/images/**/*'
+  samples: 'app/samples/**/*'
 
 gulp.task 'clean', ->
   gulp.src('dist', read: false)
@@ -45,6 +46,7 @@ gulp.task 'jade', ->
   gulp.src(paths.jade)
       .pipe(jade())
       .pipe(gulp.dest('dist'))
+      .pipe(connect.reload())
 
 gulp.task 'stylus', ->
   gulp.src(paths.stylus)
@@ -56,6 +58,10 @@ gulp.task 'images', ->
   gulp.src(paths.images)
       .pipe(gulp.dest('dist/images'))
 
+gulp.task 'samples', ->
+  gulp.src(paths.samples)
+      .pipe(gulp.dest('dist/samples'))
+
 gulp.task 'bower', ->
   gulp.src('app/index.jade')
       .pipe(wiredep(ignorePath: /\.\.\//))
@@ -64,7 +70,6 @@ gulp.task 'bower', ->
 gulp.task 'watch', ->
   gulp.watch(paths.jade, ['jade'])
   gulp.watch(paths.stylus, ['stylus'])
-  gulp.watch(paths.images, ['images'])
 
 
 gulp.task 'deploy', ->
@@ -72,7 +77,7 @@ gulp.task 'deploy', ->
       .pipe(ghPages())
 
 gulp.task 'build', ->
-  runSequence 'clean', 'bower', ['jade', 'stylus', 'images'], 'usemin'
+  runSequence 'clean', 'bower', ['jade', 'stylus', 'images', 'samples'], 'usemin'
 
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', ['jade', 'stylus', 'images'], ['connect', 'watch']
+  runSequence 'clean', 'bower', ['jade', 'stylus', 'images', 'samples'], ['connect', 'watch']

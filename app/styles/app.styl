@@ -2,17 +2,18 @@
 @import nib
 @import main
 
-$green  = #1abc9c
-$blue   = #3498db
-$purple = #9b59b6
-$yellow = #f1c40f
-$orange = #f39c12
-$red    = #e74c3c
-$pink   = #d2527f
-$dark   = #34495e
-$silver = #95a5a6
-$white  = #FEFEFE
-$black  = rgba(0, 0, 0, 0.8)
+$green    = #1abc9c
+$blue     = #3498db
+$purple   = #9b59b6
+$yellow   = #f1c40f
+$orange   = #f39c12
+$red      = #e74c3c
+$pink     = #d2527f
+$dark     = #34495e
+$silver   = #95a5a6
+$white    = #FEFEFE
+$black    = rgba(0, 0, 0, 0.8)
+$daftpunk = #15d880
 
 $colors = "green" $green, "blue" $blue, "purple" $purple, "yellow" $yellow, "orange" $orange, "red" $red, "pink" $pink, "dark" $dark, "silver" $silver, "white" $white, "black" $black
 
@@ -25,6 +26,8 @@ for color in $colors
 
 html
   box-sizing border-box
+  -ms-touch-action manipulation
+  touch-action manipulation
 
 *,
 *:before,
@@ -48,6 +51,9 @@ body
   &:after
     clear both
 
+a
+  color $silver
+
 .container
   margin 0 auto
   width 600px
@@ -70,7 +76,16 @@ body
     z-index 10
 
 .new-game
+  display inline-block
   cursor pointer
+  color $pink
+  border 3px solid $pink
+  border-radius 10px
+  padding 10px 30px
+
+  &:hover
+    background-color $pink
+    color $white
 
 @media (max-width 768px)
   .container
@@ -80,3 +95,36 @@ body
     width (100/3)%
     height auto
     font-size 5em
+
+
+// Daft punk
+
+body.daftpunk
+  color $white
+  background-color #101012
+
+  .tile
+    background-color transparent
+    color $daftpunk
+    border 3px solid $daftpunk
+    border-radius 10px
+    box-shadow 0 0 80px -10px $daftpunk
+    width 190px
+    margin 5px
+
+    &.pressed
+      background-color $daftpunk
+      color $black
+
+  .new-game
+    color $daftpunk
+    border-color $daftpunk
+
+    &:hover
+      background-color $daftpunk
+      color $white
+
+  @media (max-width 768px)
+    .tile
+      width (95/3)%
+      margin (2/3)%

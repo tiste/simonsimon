@@ -1,6 +1,8 @@
 'use strict';
 
-var Simon = function() {},
+var Simon = function() {
+  this.daftpunk = false;
+},
 app   = new Simon(),
 keys  = {
   49: '1',
@@ -17,12 +19,20 @@ keys  = {
 Simon.prototype.init = function() {
   var that = this;
 
+  this.setScore();
+
   $('.new-game').on('click', function() {
     that.newGame();
+  });
+
+  $('.go-daftpunk').on('click', function() {
+    $('body').addClass('daftpunk');
+    that.daftpunk = true;
   });
 };
 
 Simon.prototype.newGame = function() {
+  this.setScore();
   this.sequence = [];
   this.current = [];
   this.round = 0;
@@ -32,6 +42,7 @@ Simon.prototype.newGame = function() {
 };
 
 Simon.prototype.nextRound = function() {
+  $('.score').text(this.sequence.length);
   this.sequence.push(this.randomNumber());
   this.current = this.sequence.slice(0);
   this.animate();
@@ -39,6 +50,17 @@ Simon.prototype.nextRound = function() {
 
 Simon.prototype.randomNumber = function() {
   return Math.floor((Math.random() * 9) + 1);
+};
+
+Simon.prototype.setScore = function() {
+  var max = localStorage.getItem('max');
+
+  if (!max) {
+    max = 0;
+    localStorage.setItem('max', 0);
+  }
+
+  $('.max').text(max);
 };
 
 Simon.prototype.press = function(tileNb) {
@@ -55,7 +77,11 @@ Simon.prototype.canContinue = function() {
     this.nextRound();
   } else if (!this.continue) {
     this.preventPlaying();
-    alert('YOU LOSE');
+
+    if (parseInt(localStorage.getItem('max')) < this.sequence.length - 1) {
+      localStorage.setItem('max', this.sequence.length - 1);
+      this.setScore();
+    }
   }
 };
 
@@ -96,6 +122,14 @@ Simon.prototype.animate = function() {
 
 Simon.prototype.highlight = function(tile) {
   var $tile = $('.tile[data-tile=' + tile + ']').addClass('pressed');
+
+  if (this.daftpunk) {
+    var $song = $('[data-song=' + tile + ']')[0];
+
+    $song.pause()
+    $song.currentTime = 0;
+    $song.play();
+  }
 
   setTimeout(function() {
     $tile.removeClass('pressed');

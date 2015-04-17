@@ -11,11 +11,37 @@ html
     // endbuild
 
   body
-    h1.text-center.new-game New game
-    .container.pos-absolute-center
+    .text-center
+      h1.mbs.mtm simonsimon
+
+      small
+        b Score :&nbsp;
+        span.score.mrl 0
+
+      small
+        b Max :&nbsp;
+        span.max
+
+      br
+
+      span.new-game.mbxl.mtl New game
+
+    .container
       - n = 1
       each tile in ['green', 'blue', 'purple', 'yellow', 'orange', 'red', 'pink', 'dark', 'silver']
         .tile(class=tile, data-tile=n)= n++
+
+    .text-center.mbl.mtxl
+      small
+        | Lovely created by&nbsp;
+        a(href='http://twitter.com/tiste') @tiste
+        br
+
+      small.pointer
+        span.go-daftpunk Daft Punk ?
+
+    each id in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      audio(data-song=id): source(src='samples/daftpunk/#{id}.wav')
 
     // build:jsVendor(.) scripts/vendor.js
     // bower:js
