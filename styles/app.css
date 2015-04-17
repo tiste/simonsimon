@@ -605,16 +605,16 @@ a {
 }
 .container {
   margin: 0 auto;
-  width: 600px;
+  width: 450px;
 }
 .tile {
   float: left;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   cursor: pointer;
-  font-size: 8em;
+  font-size: 7em;
   text-align: center;
-  line-height: 1.55;
+  line-height: 1.35;
   color: rgba(254,254,254,0.3);
   -webkit-transition: background-color 0.2s, -webkit-transform 0.2s, box-shadow 0.2s;
   -moz-transition: background-color 0.2s, -moz-transform 0.2s, box-shadow 0.2s;
@@ -667,7 +667,7 @@ body.daftpunk .tile {
   border-radius: 10px;
   -webkit-box-shadow: 0 0 80px -10px #15d880;
   box-shadow: 0 0 80px -10px #15d880;
-  width: 190px;
+  width: 140px;
   margin: 5px;
 }
 body.daftpunk .tile.pressed {
