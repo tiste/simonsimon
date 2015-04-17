@@ -2,6 +2,7 @@
 
 var Simon = function() {
   this.daftpunk = false;
+  this.freestyle = false;
 },
 app   = new Simon(),
 keys  = {
@@ -26,13 +27,19 @@ Simon.prototype.init = function() {
   });
 
   $('.go-daftpunk').on('click', function() {
-    $('body').addClass('daftpunk');
-    that.daftpunk = true;
+    $('body').toggleClass('daftpunk');
+    that.daftpunk = !that.daftpunk;
+  });
+
+  $('.go-freestyle').on('click', function() {
+    that.freestyle = !that.freestyle;
+    that.letsPlay();
   });
 };
 
 Simon.prototype.newGame = function() {
   this.setScore();
+  this.freestyle = false;
   this.sequence = [];
   this.current = [];
   this.round = 0;
@@ -64,11 +71,14 @@ Simon.prototype.setScore = function() {
 };
 
 Simon.prototype.press = function(tileNb) {
-  var nb = this.current.shift();
-
   this.highlight(tileNb);
-  this.continue = (nb == tileNb);
-  this.canContinue();
+
+  if (!this.freestyle) {
+    var nb = this.current.shift();
+
+    this.continue = (nb == tileNb);
+    this.canContinue();
+  }
 };
 
 Simon.prototype.canContinue = function() {

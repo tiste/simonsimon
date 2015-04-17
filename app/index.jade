@@ -32,13 +32,15 @@ html
         .tile(class=tile, data-tile=n)= n++
 
     .text-center.mbl.mtxl
+      small.pointer
+        span.go-daftpunk Daft Punk mode
+        | &nbsp;|&nbsp;
+        span.go-freestyle Freestyle mode
+        br
+
       small
         | Lovely created by&nbsp;
         a(href='http://twitter.com/tiste') @tiste
-        br
-
-      small.pointer
-        span.go-daftpunk Daft Punk ?
 
     each id in [1, 2, 3, 4, 5, 6, 7, 8, 9]
       audio(data-song=id): source(src='samples/daftpunk/#{id}.wav')
