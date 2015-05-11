@@ -73,7 +73,7 @@ gulp.task 'watch', ->
 
 
 gulp.task 'deploy', ->
-  gulp.src('dist/**/*')
+  gulp.src(['dist/**/*', 'app/CNAME'])
       .pipe(ghPages())
 
 gulp.task 'build', ->
